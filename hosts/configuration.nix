@@ -33,6 +33,7 @@
     shell = pkgs.zsh;
   };
 
+
   environment = {
     variables = {
       TERMINAL = "${vars.terminal}";
@@ -128,6 +129,7 @@
   nix = {
     settings = {
       auto-optimise-store = true;
+      trusted-users = [ "root" "${vars.user}" ];
     };
     gc = {
       automatic = true;

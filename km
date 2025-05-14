@@ -1,0 +1,35 @@
+#!/bin/sh
+
+help() {
+  echo """
+    all-switch <host>  - run nixos-rebuild and home-manager switch with <host> profile. 
+    os-switch <host>   - run nixos-rebuild switch with <host> profile.
+    home-switch        - run home-manager switch.
+  """
+}
+
+case $1 in 
+
+  "all-switch" | "os-switch")
+    if [[ -n "$2" ]]; then
+      echo "Update will start in 3 seconds."
+      sleep 3
+      nixos-rebuild switch --flake ".#$2"
+      if [[ "$1" -eq "all-switch" ]]; then
+        home-manager switch --flake .
+      fi
+    else
+      echo -e "\e[31merror\e[0m: please specify host profile."
+    fi
+  ;;
+
+"home-switch")
+  echo "Update will start in 3 seconds."
+  sleep 3
+  home-manager switch --flake .
+;;
+
+*)
+  help
+;;
+esac
