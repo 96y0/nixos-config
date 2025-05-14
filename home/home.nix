@@ -37,6 +37,7 @@
       #minecraft
       #davinci-resolve
       #kitty
+      zsh-powerlevel10k
     ];
   };
 

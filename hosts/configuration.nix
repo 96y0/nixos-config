@@ -30,6 +30,7 @@
   users.users.${vars.user} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "video" "audio" "camera" "lp" "networkmanager" ];
+    shell = pkgs.zsh;
   };
 
   environment = {
@@ -84,6 +85,7 @@
       hyprshot
       hyprpaper
       xdg-desktop-portal-hyprland
+      rofi-wayland
 
       # Editor
       emacs
@@ -117,6 +119,10 @@
   programs.hyprland = {
     enable = true;
     withUWSM = true;
+  };
+
+  programs.zsh = {
+    enable = true;
   };
 
   nix = {
